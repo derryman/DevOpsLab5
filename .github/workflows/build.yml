@@ -4,26 +4,23 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Use Ubuntu as the OS
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Install GCC
+        run: sudo apt-get install build-essential -y  # Ensure GCC and Make are installed
+
       - name: Build with Make
-        run:  |
-          make
+        run: make  # This runs your Makefile
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: myprogram
-          path: ./myprogram
-
-
-
-
-
-
+          path: ./myprogram  # Ensure this matches your output binary path
 
 
 
